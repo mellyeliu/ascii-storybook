@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+html, body {
+  overflow: hidden;  /* Prevents scrolling */
+  cursor: url('/public/cursor.png'), auto;
+  height: 100%;      /* Sets the height to fill the browser window */
+}
