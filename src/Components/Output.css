@@ -1,40 +1,53 @@
 @keyframes bounce {
     0%, 100% {
-      transform: translate(100px, -100px);
+      transform: translate(10px, -10px);
       opacity: 0.9;
     }
-    25% {
+    /* 25% {
       transform: translate(150px, -50px);
       opacity: 0.1;
-    }
+    } */
     50% {
-      transform: translate(50px, 100px);
+      transform: translate(5px, 10px);
       opacity: 0.3;
     }
-    75% {
+    /* 75% {
       transform: translate(-100px, 50px);
       opacity: 0.8;
-    }
+    } */
   }
+
+  @keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+.image-pulse {
+  animation: pulse 10s infinite ease-in-out;
+}
 
   @keyframes bounce2 {
     0%, 100% {
       transform: translate(0px, 0px);
-      opacity: 0.1;
+      opacity: 0.9;
     }
-    25% {
+    /* 25% {
       transform: translate(-150px, -200px);
       opacity: 0.7;
-    }
+    } */
 
     50% {
-      transform: translate(-70px, 100px);
+      transform: translate(-7px, 10px);
       opacity: 0.1;
     }
-    75% {
+    /* 75% {
       transform: translate(100px, -50px);
       opacity: 0.7;
-    }
+    } */
   }
 
 
@@ -43,7 +56,7 @@
     height: auto;
     /* opacity: 0.7; */
     position: absolute;
-    animation: bounce 200s infinite;
+    animation: bounce 20s infinite;
   }
 
   .image2 {
@@ -51,7 +64,7 @@
     height: auto;
     /* opacity: 0.7; */
     position: absolute;
-    animation: bounce2 300s infinite;
+    animation: bounce2 30s infinite;
   }
 
 

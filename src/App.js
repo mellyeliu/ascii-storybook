@@ -19,11 +19,11 @@ function App() {
 
   useEffect(() => {
     // Calculate random positions for three images
-    const newPositions = Array.from({ length: 255 }, () => ({
+    const newPositions = Array.from({ length: 105 }, () => ({
       left: Math.random() * 90 + '%', // Random left position within 90% of the container width
       top: Math.random() * 90 + '%', // Random top position within 90% of the container height
       src: `star${Math.floor(Math.random() * 3 + 5)}.png`,
-      width: Math.floor(Math.random() * (15 - 5 + 1) + 1)
+      width: Math.floor(Math.random() * (23 - 5 + 1) + 1)
     }));
     setPositions(newPositions);
   }, []);

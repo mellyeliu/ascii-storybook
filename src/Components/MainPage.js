@@ -22,17 +22,6 @@ const titleStyle = {
     // bottom: 0,
   }
 
-const title = `
-_________  _______      ___    ___ _________                     ___         ________  ________  ________  ___  ___
-|\___   ___\\  ___ \    |\  \  /  /|\___   ___\                  |\  \       |\   __  \|\   ____\|\   ____\|\  \|\  \
-\|___ \  \_\ \   __/|   \ \  \/  / ||___ \  \_|      ____________\ \  \      \ \  \|\  \ \  \___|\ \  \___|\ \  \ \  \
-     \ \  \ \ \  \_|/__  \ \    / /     \ \  \      |\____________\ \  \      \ \   __  \ \_____  \ \  \    \ \  \ \  \
-      \ \  \ \ \  \_|\ \  /     \/       \ \  \     \|____________|\/  /|      \ \  \ \  \|____|\  \ \  \____\ \  \ \  \
-       \ \__\ \ \_______\/  /\   \        \ \__\                   /  //        \ \__\ \__\____\_\  \ \_______\ \__\ \__\
-        \|__|  \|_______/__/ /\ __\        \|__|                  /_ //          \|__|\|__|\_________\|_______|\|__|\|__|
-                        |__|/ \|__|                              |__|/                    \|_________|
-`
-
 const SplitScreenComponent = () => {
   const [outputText, setOutputText] = useState('');
 
@@ -43,7 +32,7 @@ const SplitScreenComponent = () => {
 
   return (
     <div style={appStyle}>
-        <img style={titleStyle} src="/title.png"/>
+        <img style={titleStyle} src="/title.png" />
     <div style={styles}>
       <TextInputArea onGenerate={handleGenerate} />
       <OutputCard text={outputText} />
