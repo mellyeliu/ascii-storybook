@@ -15,23 +15,29 @@ const titleStyle = {
 
 function App() {
   const [positions, setPositions] = useState([]);
+  const randomWidths = Array.from({ length: 50 }, () => Math.floor(Math.random() * (7 - 5 + 1) + 1));
 
   useEffect(() => {
     // Calculate random positions for three images
-    const newPositions = Array.from({ length: 65 }, () => ({
+    const newPositions = Array.from({ length: 255 }, () => ({
       left: Math.random() * 90 + '%', // Random left position within 90% of the container width
-      top: Math.random() * 90 + '%' // Random top position within 90% of the container height
+      top: Math.random() * 90 + '%', // Random top position within 90% of the container height
+      src: `star${Math.floor(Math.random() * 3 + 5)}.png`,
+      width: Math.floor(Math.random() * (15 - 5 + 1) + 1)
     }));
     setPositions(newPositions);
   }, []);
   return (
-    <div style={{ backgroundColor: '#111111', color: 'white', maxHeight: '100vh', minHeight: '100vh', width: '100vw', padding: 0, margin: 0, overflow: 'hidden'}} className="App">
+    <div style={{
+      // background: '#111',
+      background: 'linear-gradient(to bottom, #222, #111, #222, #222, #333, #555)',
+      color: 'white', maxHeight: '100vh', minHeight: '100vh', width: '100vw', padding: 0, margin: 0, overflow: 'hidden'}} className="App">
       {positions.map((pos, index) => (
         <img
           key={index}
-          src={ (index % 2 === 0 ? '/stars.png' : '/stars.png') }
+          src={ pos.src }
         className={"drift " + (index % 2 === 0 ? 'image' : 'image2')}
-          style={{ position: 'absolute', left: pos.left, top: pos.top }}
+          style={{ position: 'absolute', left: pos.left, top: pos.top, width: pos.width }}
           alt={`Drifting Image ${index + 1}`}
         />
       ))}
@@ -41,7 +47,7 @@ function App() {
           className="rotating-image"
         />
       <img
-          style={{ position: 'absolute', left: '12%', top: '45%', height: 250 }}
+          style={{ position: 'absolute', left: '15%', top: '45%', height: 250 }}
           src={  '/globe.png' }
           className="rotating-image2"
         />

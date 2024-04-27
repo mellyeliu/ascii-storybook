@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Kode+Mono:wght@400..700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -37,9 +39,21 @@
   }
 }
 
+textarea::placeholder {
+  color: rgb(232, 232, 232);          /* White placeholder text */
+  font-size: 12px;       /* Placeholder font size */
+  font-family: 'Kode Mono';
+}
+
+:root {
+  --dark-color: #191919; /* Define the color variable */
+  --font-fam: 'Kode Mono';
+}
 
 html, body {
+  font-family: 'Kode Mono' !important;
+  font-size: 12px;
   overflow: hidden;  /* Prevents scrolling */
-  cursor: url('/public/cursor.png'), auto;
+  /* cursor: url('/public/cursor.png'), auto; */
   height: 100%;      /* Sets the height to fill the browser window */
 }
