@@ -9,16 +9,13 @@ const TextInputArea = ({ onGenerate }) => {
 
   useEffect(() => {
     if (typedText === prompt && index < prompts.length - 1) {
-      setTimeout(() => setIndex(index + 1), 1000);
+      setTimeout(() => setIndex(index + 1), 10000);
     }
     else if (typedText === prompt && index === prompts.length - 1) {
-      setTimeout(() => setIndex(0), 1000);
+      setTimeout(() => setIndex(0), 10000);
     }
   }, [typedText, index, prompt]);
 
-  // useEffect(() => {
-  //   setPlaceholder(prompts[index]);
-  // }, [index]);
   const [inputText, setInputText] = useState('');
 
   const handleChange = (event) => {
@@ -39,17 +36,14 @@ const TextInputArea = ({ onGenerate }) => {
     color: 'white',
     cursor: 'pointer',
     fontFamily: 'var(--font-fam)',
-    // width: '90%',
-    // marginLeft: 'auto',
-    // marginRight: 'auto',
   }
 
   return (
-    <div style={{ height: 500, width: '23%', display: 'flex', flexDirection: 'column', marginRight: 30 }}>
+    <div style={{ height: 500, width: '25%', display: 'flex', flexDirection: 'column', marginRight: 30 }}>
       <textarea
         value={inputText}
         onChange={handleChange}
-        style={{ zIndex: 10, flexGrow: 1, color: 'white', padding: '10px', border: '1px solid white', background: 'var(--dark-color)', borderRadius: '10px', resize: 'none' }}
+        style={{ fontSize: 12, zIndex: 10, flexGrow: 1, color: 'white', padding: '10px', border: '1px solid white', background: 'var(--dark-color)', borderRadius: '10px', resize: 'none' }}
         rows="10"
         placeholder={typedText}
       />

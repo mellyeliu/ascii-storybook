@@ -57,3 +57,36 @@ html, body {
   /* cursor: url('/public/cursor.png'), auto; */
   height: 100%;      /* Sets the height to fill the browser window */
 }
+
+button:hover {
+  background-color: rgb(52, 52, 52) !important; /* Background color on hover */
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column; /* Aligns children (loader and text) vertically */
+  align-items: center; /* Centers children horizontally */
+  justify-content: center; /* Centers children vertically */
+  height: 400; /* Full viewport height */
+  text-align: center; /* Ensures text is centered */
+  margin-top: 50% !important;
+}
+
+/* Styles the entire scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+  border-radius: 50px;
+}
+
+/* Styles the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(85, 85, 85); /* color of the draggable element */
+  border-radius: 50px; /* roundness of the draggable part */
+  border: 3px solid rgb(19, 19, 19); /* creates a border inside the scrollbar */
+}
+
+/* Styles the background of the scrollbar (part where the thumb isn't) */
+::-webkit-scrollbar-track {
+  border-radius: 50px;
+  background-color: rgb(21, 21, 21); /* color of the track */
+}

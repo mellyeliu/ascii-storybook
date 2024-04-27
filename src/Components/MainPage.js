@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react';
 import TextInputArea from './TextArea';
 import OutputCard from './OutputCard';
 import { createClient } from "@supabase/supabase-js";
+// import Loader from 'react-loader-spinner';
+
 const appStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -31,6 +33,7 @@ const SplitScreenComponent = () => {
   const [outputText, setOutputText] = useState('');
   const [responseId, setResponseId] = useState(null);
   const [intervalId, setIntervalId] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [generatedImageUrls, setGeneratedImageUrls] = useState([]);
 
   useEffect(() => {
@@ -43,6 +46,7 @@ const SplitScreenComponent = () => {
           setGeneratedImageUrls(imageUrls);
 
           console.log("Set image urls", imageUrls);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error)
@@ -56,6 +60,7 @@ const SplitScreenComponent = () => {
   }, [responseId]);
 
   const handleGenerate = (inputText) => {
+    setLoading(true);
     setOutputText(`${inputText}`);
 
     fetch("http://127.0.0.1:5000/generate", {
@@ -70,7 +75,7 @@ const SplitScreenComponent = () => {
     .then(response => {
       if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
-      } 
+      }
       return response.json();
     })
     .then(data => {
@@ -85,7 +90,7 @@ const SplitScreenComponent = () => {
         <img style={titleStyle} src="/title.png" />
     <div style={styles}>
       <TextInputArea onGenerate={handleGenerate} />
-      <OutputCard text={outputText} />
+      <OutputCard text={outputText} imageURLs={generatedImageUrls} loading={loading}/>
     </div>
     </div>
   );
