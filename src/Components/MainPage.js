@@ -87,7 +87,7 @@ const SplitScreenComponent = () => {
 
   return (
     <div style={appStyle}>
-        <img style={titleStyle} src="/title.png" />
+        <img style={titleStyle} src={"/title2.png"} />
     <div style={styles}>
       <TextInputArea onGenerate={handleGenerate} />
       <OutputCard text={outputText} imageURLs={generatedImageUrls} loading={loading}/>

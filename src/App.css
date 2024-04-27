@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Kode+Mono:wght@400..700&display=swap');
 
+:root {
+  --dark-color: #c8c8c8; /* Define the color variable */
+  --border: 1px solid rgb(36, 36, 36);
+  --font-fam: 'Kode Mono';
+  --font-color: rgb(58, 58, 58);
+  --app-background: rgb(239, 239, 239);
+  /* linear-gradient(to bottom, #222, #111, #222, #222, #333, #555); */
+  --title-url: '/title.png';
+  --font-size: 14px;
+}
+
+
 .App {
   text-align: center;
 }
@@ -13,17 +25,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -40,27 +41,19 @@
 }
 
 textarea::placeholder {
-  color: rgb(232, 232, 232);          /* White placeholder text */
-  font-size: 12px;       /* Placeholder font size */
-  font-family: 'Kode Mono';
-}
-
-:root {
-  --dark-color: #191919; /* Define the color variable */
-  --font-fam: 'Kode Mono';
+  color: var(--font-color);          /* White placeholder text */
+  font-size: var(--font-size);       /* Placeholder font size */
+  font-family: var(--font-fam);
 }
 
 html, body {
-  font-family: 'Kode Mono' !important;
-  font-size: 12px;
+  font-family: var(--font-fam) !important;
+  font-size: var(--font-size);
   overflow: hidden;  /* Prevents scrolling */
   /* cursor: url('/public/cursor.png'), auto; */
   height: 100%;      /* Sets the height to fill the browser window */
 }
 
-button:hover {
-  background-color: rgb(52, 52, 52) !important; /* Background color on hover */
-}
 
 .loader-container {
   display: flex;
@@ -70,6 +63,17 @@ button:hover {
   height: 400; /* Full viewport height */
   text-align: center; /* Ensures text is centered */
   margin-top: 50% !important;
+}
+
+.loader-container2 {
+  display: flex;
+  color: var(--font-color);
+  flex-direction: column; /* Aligns children (loader and text) vertically */
+  align-items: center; /* Centers children horizontally */
+  justify-content: center; /* Centers children vertically */
+  height: 400; /* Full viewport height */
+  text-align: center; /* Ensures text is centered */
+  margin-top: 50px;
 }
 
 /* Styles the entire scrollbar */

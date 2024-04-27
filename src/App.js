@@ -14,30 +14,30 @@ const titleStyle = {
 function App() {
   const [positions, setPositions] = useState([]);
   const randomWidths = Array.from({ length: 50 }, () => Math.floor(Math.random() * (7 - 5 + 1) + 1));
+  const starsText = [ "✶", '✧˖°.', '✩₊'];
 
   useEffect(() => {
     // Calculate random positions for three images
     const newPositions = Array.from({ length: 105 }, () => ({
       left: Math.random() * 90 + '%', // Random left position within 90% of the container width
       top: Math.random() * 90 + '%', // Random top position within 90% of the container height
-      src: `star${Math.floor(Math.random() * 3 + 5)}.png`,
+      src: starsText[Math.floor(Math.random() * 3)],
       width: Math.floor(Math.random() * (23 - 5 + 1) + 1)
     }));
     setPositions(newPositions);
   }, []);
   return (
     <div style={{
-      // background: '#111',
-      background: 'linear-gradient(to bottom, #222, #111, #222, #222, #333, #555)',
-      color: 'white', maxHeight: '100vh', minHeight: '100vh', width: '100vw', padding: 0, margin: 0, overflow: 'hidden'}} className="App">
+      background: 'var(--app-background)',
+      color: 'var(--font-color)', maxHeight: '100vh', minHeight: '100vh', width: '100vw', padding: 0, margin: 0, overflow: 'hidden'}} className="App">
       {positions.map((pos, index) => (
-        <img
+        <div
           key={index}
-          src={ pos.src }
+          // src={ pos.src }
         className={"drift " + (index % 2 === 0 ? 'image' : 'image2')}
-          style={{ position: 'absolute', left: pos.left, top: pos.top, width: pos.width }}
+          style={{ position: 'absolute', left: pos.left, top: pos.top, fontSize: pos.width }}
           alt={`Drifting Image ${index + 1}`}
-        />
+        >{pos.src}</div>
       ))}
       <img
           style={{ position: 'absolute', left: '70%', top: '20%', height: 290 }}

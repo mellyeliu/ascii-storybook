@@ -31,9 +31,9 @@ const TextInputArea = ({ onGenerate }) => {
     padding: '10px 20px',
     backgroundColor: 'var(--dark-color)',
     zIndex: 10,
-    border: '1px solid white',
+    border: 'var(--border)',
     borderRadius: '10px',
-    color: 'white',
+    color: 'var(--font-color)',
     cursor: 'pointer',
     fontFamily: 'var(--font-fam)',
   }
@@ -43,7 +43,7 @@ const TextInputArea = ({ onGenerate }) => {
       <textarea
         value={inputText}
         onChange={handleChange}
-        style={{ fontSize: 12, zIndex: 10, flexGrow: 1, color: 'white', padding: '10px', border: '1px solid white', background: 'var(--dark-color)', borderRadius: '10px', resize: 'none' }}
+        style={{ fontSize: 12, zIndex: 10, flexGrow: 1, color: 'white', padding: '10px', border: 'var(--border)', background: 'var(--dark-color)', borderRadius: '10px', resize: 'none' }}
         rows="10"
         placeholder={typedText}
       />
