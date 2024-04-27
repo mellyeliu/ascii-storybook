@@ -2,8 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import MainPage from './Components/MainPage';
 import React, { useEffect, useState } from 'react';
-
-
 const title = `
 Text to Ascii
 `
