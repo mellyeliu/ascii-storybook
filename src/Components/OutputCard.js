@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Output.css';
 import { GlitchedImage } from 'react-image-glitch'
-import {ThreeDots} from 'react-loader-spinner';
+import {MutatingDots} from 'react-loader-spinner';
 
 
 const OutputCard = ({ text, imageURLs, loading }) => {
@@ -35,17 +35,11 @@ const OutputCard = ({ text, imageURLs, loading }) => {
             </div>
           ) : (
             <div className="loader-container" style={{display: 'flex', margin: 'auto'}}>
-              <ThreeDots color="white"/>
+              <MutatingDots color="white" secondaryColor="white"/>
               <p>Loading...</p>
             </div>
 
           )}
-
-
-
-      {/* <img src="/bunny.png" alt="Drifting Left" /> */}
-      {/* <img src="/bunny.png" className="image drift-right" alt="Drifting Right" />
-      <img src="/bunny.png" className="image drift-up" alt="Drifting Up" /> */}
     </div>
 
 

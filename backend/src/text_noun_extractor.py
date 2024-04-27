@@ -1,19 +1,24 @@
-import nltk
-from nltk import pos_tag
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords, reuters
+import string
 from collections import Counter
 
-nltk.download('averaged_perceptron_tagger')
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('reuters')
+import nltk
+from nltk import FreqDist, pos_tag
+from nltk.corpus import reuters, stopwords
+from nltk.tokenize import word_tokenize
+from nltk.util import bigrams
+
+
+nltk.download("averaged_perceptron_tagger")
+nltk.download("punkt")
+nltk.download("stopwords")
+nltk.download("reuters")
+
 
 def extract_nouns(text):
     words = word_tokenize(text)
     pos_tags = pos_tag(words)
 
-    nouns = [word for word, tag in pos_tags if tag in ('NN', 'NNS', 'NNP', 'NNPS')]
+    nouns = [word for word, tag in pos_tags if tag in ("NN", "NNS", "NNP", "NNPS")]
 
     if not nouns:
         return [], []
@@ -21,20 +26,65 @@ def extract_nouns(text):
     text_freq = Counter(nouns)
 
     # reuters corpus and count word frequencies
-    reuters_words = [word.lower() for fileid in reuters.fileids() for word in reuters.words(fileid)]
+    reuters_words = [
+        word.lower() for fileid in reuters.fileids() for word in reuters.words(fileid)
+    ]
     reuters_freq = Counter(reuters_words)
 
-    noun_rarity = {noun: 1 / reuters_freq[noun.lower()] for noun in nouns if reuters_freq[noun.lower()] > 0}
+    noun_rarity = {
+        noun: 1 / reuters_freq[noun.lower()]
+        for noun in nouns
+        if reuters_freq[noun.lower()] > 0
+    }
 
     sorted_unique_nouns = sorted(noun_rarity.items(), key=lambda x: x[1], reverse=True)
 
     # 3 least common nouns
-    least_common_nouns = [noun for noun, _ in sorted_unique_nouns[:min(3, len(sorted_unique_nouns))]]
+    least_common_nouns = [
+        noun for noun, _ in sorted_unique_nouns[: min(3, len(sorted_unique_nouns))]
+    ]
 
     # three most frequent nouns
-    most_frequent_nouns = [noun for noun, _ in text_freq.most_common(min(3, len(text_freq)))]
+    most_frequent_nouns = [
+        noun for noun, _ in text_freq.most_common(min(3, len(text_freq)))
+    ]
+    bigram = extract_interesting_bigrams(text)
 
-    return most_frequent_nouns, least_common_nouns
+    return most_frequent_nouns, least_common_nouns, bigram
+
+
+def extract_interesting_bigrams(text):
+    tokens = word_tokenize(text)
+    # POS tagging
+    tagged_tokens = pos_tag(tokens)
+
+    # Filter out stopwords and punctuation, and collect nouns
+    stop_words = set(stopwords.words("english"))
+    filtered_tokens = [
+        word.lower()
+        for word, tag in tagged_tokens
+        if word.lower() not in stop_words and word.isalpha() and word != "dream"
+    ]
+    nouns = [word for word, tag in tagged_tokens if tag.startswith("NN")]
+
+    # Frequency distribution of nouns
+    noun_freq = FreqDist(nouns)
+
+    # Collect the top frequent nouns
+    top_nouns = [
+        noun for noun, freq in noun_freq.most_common(3)
+    ]  # Adjust the number as needed
+
+    # Generate bigrams from filtered tokens
+    generated_bigrams = list(bigrams(filtered_tokens))
+
+    # Filter bigrams where the second word is a top frequent noun
+    filtered_bigrams = [
+        bigram for bigram in generated_bigrams if bigram[1] in top_nouns
+    ]
+
+    return filtered_bigrams[0] if filtered_bigrams else []
+
 
 if __name__ == "__main__":
     text = """
@@ -61,7 +111,6 @@ if __name__ == "__main__":
     I had a dream about marriage noodle. They came in a blue can that was the shape of the Quaker Oats box. These noodles were kind of like soup only without much liquid in them. The expiration date on the noodles was for 60 years from now. I remember trying to figure out how they could last that long, and if they would last that long if they were opened, or would they only last that long if they were not opened.
     """
 
-
     most_frequent_nouns, least_common_nouns = extract_nouns(text)
     print("Three most frequent nouns:", most_frequent_nouns)
     print("Four least common nouns:", least_common_nouns)
@@ -74,10 +123,8 @@ if __name__ == "__main__":
     print("Three most frequent nouns:", most_frequent_nouns)
     print("Four least common nouns:", least_common_nouns)
 
-
-
     """
     - extract out nouns (person, 2 objects) -> put into dalle (in the style of clipart) -> ascii tool
-    - sentiment analysis of whole story 
+    - sentiment analysis of whole story
 
     """

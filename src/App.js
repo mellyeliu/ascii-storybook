@@ -40,12 +40,12 @@ function App() {
         />
       ))}
       <img
-          style={{ position: 'absolute', left: '70%', top: '20%', height: 350 }}
+          style={{ position: 'absolute', left: '70%', top: '20%', height: 290 }}
           src={  '/globe.png' }
           className="rotating-image"
         />
       <img
-          style={{ position: 'absolute', left: '15%', top: '45%', height: 250 }}
+          style={{ position: 'absolute', left: '15%', top: '45%', height: 220 }}
           src={  '/globe.png' }
           className="rotating-image2"
         />
