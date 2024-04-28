@@ -59,7 +59,7 @@ const titleStyle = {
     marginTop: '3%',
     fontFamily: 'monospace',
     whiteSpace: 'pre',
-    fontSize: 7,
+    fontSize: 6,
     color: 'var(--title-color)',
     textShadow: '2px 2px #8f8f8f, -2px -2px #eee',
     // position: 'absolute',
