@@ -83,14 +83,20 @@ const SplitScreenComponent = () => {
       try {
         const { data, error } = await supabase.storage.from('ascii-images').list(responseId);
         if (data.length) {
+          let imageUrls = data.map((d) => `https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/${responseId}/${d.name}`);
+          if (data.length == 3) {
+            setIsRunning(false);
+          } else {
+            // Images may still be uploading; duplicate first URL so that we don't show gap in generation
+            const firstUrl = imageUrls[0]
+            for (let i = data.length; i < 3; i++) {
+              imageUrls.push(firstUrl);
+            }
+          }
           
-          const imageUrls = data.map((d) => `https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/${responseId}/${d.name}`);
           setGeneratedImageUrls(imageUrls);
           setLoading(false);
 
-          if (data.length == 3) {
-            setIsRunning(false);
-          }
           console.log("Set image urls", imageUrls)
         }
       } catch (error) {
