@@ -67,9 +67,22 @@
     animation: bounce 20s infinite ease-in-out;
   }
 
+  .drift {
+    filter: drop-shadow(5px 5px 3px rgb(236, 236, 236));
+  }
+
   .imagebg {
     position: absolute;
     animation: bouncebg 20s infinite ease-in-out;
+    filter: drop-shadow(5px 5px 3px rgb(236, 236, 236));
+    user-select: none;
+    -webkit-user-drag: none;
+    transform: scale(1); /* Initial scale */
+    transition: transform 0.3s ease;
+  }
+
+  .imagebg:hover {
+    transform: scale(1.02) !important; /* Scale up by 20% on hover */
   }
 
   .image2 {

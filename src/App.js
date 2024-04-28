@@ -60,6 +60,12 @@ function App() {
           // className="rotating-image2"
         />
         <img
+          style={{ opacity: 0.6, position: 'absolute', left: '87%', top: '-9%', height: 200 }}
+          src={  '/globe2.png' }
+          className="imagebg"
+          // className="rotating-image2"
+        />
+        <img
           style={{ position: 'absolute', left: '88%', top: '45%', height: 200 }}
           src={  '/starry.png' }
           className="imagebg"
