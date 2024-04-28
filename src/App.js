@@ -54,29 +54,29 @@ function App() {
           className="rotating-image2"
         /> */}
         <img
-          style={{ opacity: 0.8, position: 'absolute', left: '10%', top: '45%', height: 320 }}
+          style={{ opacity: 0.8, position: 'absolute', left: '10%', top: '45%', height: 290 }}
           src={  '/butterfly.png' }
           className="imagebg"
           // className="rotating-image2"
         />
         <img
-          style={{ opacity: 0.6, position: 'absolute', left: '87%', top: '-9%', height: 200 }}
+          style={{ opacity: 0.6, position: 'absolute', left: '87%', top: '-9%', height: 180 }}
           src={  '/globe2.png' }
           className="imagebg"
           // className="rotating-image2"
         />
         <img
-          style={{ opacity: 0.7, position: 'absolute', left: '88%', top: '45%', height: 200 }}
+          style={{ opacity: 0.7, position: 'absolute', left: '88%', top: '45%', height: 180 }}
           src={  '/starry.png' }
           className="imagebg"
         />
         <img
-          style={{opacity: 0.4, position: 'absolute', left: '17%', top: '-9%', height: 250 }}
+          style={{opacity: 0.4, position: 'absolute', left: '17%', top: '-9%', height: 220 }}
           src={  '/fairy.png' }
           className="imagebg"
         />
          <img
-          style={{ opacity: 0.7, position: 'absolute', left: '-5%', top: '15%', height: 250 }}
+          style={{ opacity: 0.7, position: 'absolute', left: '-5%', top: '15%', height: 220 }}
           src={  '/starry.png' }
           className="imagebg"/>
 

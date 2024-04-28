@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&family=Fredericka+the+Great&family=Jacquarda+Bastarda+9&family=Kode+Mono:wght@400..700&family=Syne+Mono&family=VT323&display=swap');
 
 :root {
-  --dark-color: #2f2f2f; /* Define the color variable */
-  --border: 0.5px dashed rgb(236, 236, 236);
+  --dark-color: #0d0d0d; /* Define the color variable */
+  --border: 0.5px solid rgb(208, 208, 208);
   --font-fam: 'Syne Mono';
   --font-color: rgb(225, 225, 225);
-  --title-color: rgb(46, 46, 46);
-  --app-background: rgb(33, 33, 33);
+  --title-color: rgb(11, 11, 11);
+  --app-background: rgb(17, 17, 17);
   --title-url: '/title.png';
   --font-size: 14px !important;
 }

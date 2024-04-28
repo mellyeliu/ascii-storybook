@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Output.css';
 import { GlitchedImage } from 'react-image-glitch'
 import {MutatingDots} from 'react-loader-spinner';
+import SentenceToggler from './SentenceToggler';
 
 
 const OutputCard = ({ text, imageURLs, loading }) => {
   console.log(imageURLs);
   const [currentImage, setCurrentImage] = useState(0);
+  console.log(text);
 
   const placeHolderImages = ['https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/95/out_2.png', '/fairy.png', '/butterfly.png', 'https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/88/out_0.png']
   const loadingText = ["Extracting key nouns from text...", "Feeding your words to DALL-E...", "Generating ASCII from images..."]
