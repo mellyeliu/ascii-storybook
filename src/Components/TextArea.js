@@ -9,10 +9,10 @@ const TextInputArea = ({ onGenerate }) => {
 
   useEffect(() => {
     if (typedText === prompt && index < prompts.length - 1) {
-      setTimeout(() => setIndex(index + 1), 10000);
+      setTimeout(() => setIndex(index + 1), 5000);
     }
     else if (typedText === prompt && index === prompts.length - 1) {
-      setTimeout(() => setIndex(0), 10000);
+      setTimeout(() => setIndex(0), 5000);
     }
   }, [typedText, index, prompt]);
 
@@ -36,18 +36,20 @@ const TextInputArea = ({ onGenerate }) => {
     color: 'var(--font-color)',
     cursor: 'pointer',
     fontFamily: 'var(--font-fam)',
+    fontSize: 'var(--font-size)',
   }
 
   return (
     <div style={{ height: 500, width: '25%', display: 'flex', flexDirection: 'column', marginRight: 30 }}>
       <textarea
         value={inputText}
+        className="box"
         onChange={handleChange}
-        style={{ fontSize: 12, zIndex: 10, flexGrow: 1, color: 'white', padding: '10px', border: 'var(--border)', background: 'var(--dark-color)', borderRadius: '10px', resize: 'none' }}
+        style={{ fontSize: 12, color:  'var(--font-color)', zIndex: 10, flexGrow: 1, padding: '10px', border: 'var(--border)', background: 'var(--dark-color)', borderRadius: '10px', resize: 'none' }}
         rows="10"
         placeholder={typedText}
       />
-      <button onClick={handleClick} style={buttonStyle}>
+      <button className="box" onClick={handleClick} style={buttonStyle}>
         Generate
       </button>
     </div>

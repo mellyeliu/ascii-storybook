@@ -1,7 +1,7 @@
 @keyframes bounce {
     0%, 100% {
       transform: translate(10px, -10px);
-      opacity: 0.9;
+      opacity: 0.5;
     }
     /* 25% {
       transform: translate(150px, -50px);
@@ -9,12 +9,22 @@
     } */
     50% {
       transform: translate(5px, 10px);
-      opacity: 0.3;
+      opacity: 0.2;
     }
     /* 75% {
       transform: translate(-100px, 50px);
       opacity: 0.8;
     } */
+  }
+
+  @keyframes bouncebg {
+    0%, 100% {
+      transform: translate(20px, -10px);
+
+    }
+    50% {
+      transform: translate(5px, 10px);
+    }
   }
 
   @keyframes pulse {
@@ -33,7 +43,7 @@
   @keyframes bounce2 {
     0%, 100% {
       transform: translate(0px, 0px);
-      opacity: 0.9;
+      opacity: 0.3;
     }
     /* 25% {
       transform: translate(-150px, -200px);
@@ -42,7 +52,7 @@
 
     50% {
       transform: translate(-7px, 10px);
-      opacity: 0.1;
+      opacity: 0.7;
     }
     /* 75% {
       transform: translate(100px, -50px);
@@ -52,11 +62,14 @@
 
 
   .image {
-    width: 150px; /* Adjust size as needed */
-    height: auto;
     /* opacity: 0.7; */
     position: absolute;
-    animation: bounce 20s infinite;
+    animation: bounce 20s infinite ease-in-out;
+  }
+
+  .imagebg {
+    position: absolute;
+    animation: bouncebg 20s infinite ease-in-out;
   }
 
   .image2 {
@@ -64,7 +77,7 @@
     height: auto;
     /* opacity: 0.7; */
     position: absolute;
-    animation: bounce2 30s infinite;
+    animation: bounce2 30s infinite ease-in-out;
   }
 
 

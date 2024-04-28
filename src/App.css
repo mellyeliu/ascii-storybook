@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Kode+Mono:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&family=Fredericka+the+Great&family=Jacquarda+Bastarda+9&family=Kode+Mono:wght@400..700&family=Syne+Mono&family=VT323&display=swap');
 
 :root {
-  --dark-color: #c8c8c8; /* Define the color variable */
-  --border: 1px solid rgb(36, 36, 36);
-  --font-fam: 'Kode Mono';
-  --font-color: rgb(58, 58, 58);
-  --app-background: rgb(239, 239, 239);
-  /* linear-gradient(to bottom, #222, #111, #222, #222, #333, #555); */
+  --dark-color: #4a4a4a; /* Define the color variable */
+  --border: 1px solid rgb(236, 236, 236);
+  --font-fam: 'Syne Mono';
+  --font-color: rgb(225, 225, 225);
+  --title-color: rgb(31, 31, 31);
+  --app-background: rgb(218, 218, 218);
   --title-url: '/title.png';
-  --font-size: 14px;
+  --font-size: 13px !important;
 }
 
 
@@ -57,12 +58,13 @@ html, body {
 
 .loader-container {
   display: flex;
+  color: var(--font-color);
   flex-direction: column; /* Aligns children (loader and text) vertically */
   align-items: center; /* Centers children horizontally */
   justify-content: center; /* Centers children vertically */
   height: 400; /* Full viewport height */
   text-align: center; /* Ensures text is centered */
-  margin-top: 50% !important;
+  margin-top: 40% !important;
 }
 
 .loader-container2 {
@@ -73,7 +75,7 @@ html, body {
   justify-content: center; /* Centers children vertically */
   height: 400; /* Full viewport height */
   text-align: center; /* Ensures text is centered */
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 /* Styles the entire scrollbar */
@@ -93,4 +95,21 @@ html, body {
 ::-webkit-scrollbar-track {
   border-radius: 50px;
   background-color: rgb(21, 21, 21); /* color of the track */
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: none; /* Tile the background image across the entire element */
+  opacity: 0.1; /* Adjust opacity to your liking */
+  z-index: 10000; /* Ensure it's above the content but below modal dialogs if any */
+  pointer-events: none; /* Makes the overlay click-through */
+}
+
+.box {
+  box-shadow: 2px 2px 5px rgba(89, 89, 89, 0.5);
 }

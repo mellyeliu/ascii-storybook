@@ -16,11 +16,47 @@ const appStyle = {
   boxSizing: 'border-box' // Includes padding and border in the element's total width and height
 };
 
+const asciiArt = `
+  :::::::::::/ ::::::::::/ :::    ::: :::::::::::             :::             :::      ::::::::   :::::::: ::::::::::: :::::::::::
+     :+:/     :+:/        :+:    :+:     :+:                  :+:          :+: :+:   :+:    :+: :+:    :+:    :+:         :+:
+    +:+/     +:+/         +:+  +:+      +:+                   +:+        +:+   +:+  +:+        +:+           +:+         +:+
+   +#+/     +#++:++#/     +#++:+       +#+    +#++:++#++:++   +#+      +#++:++#++: +#++:++#++ +#+           +#+         +#+
+  +#+/     +#+/         +#+  +#+      +#+                   +#+       +#+     +#+        +#+ +#+           +#+         +#+
+ #+#/     #+#/        #+#    #+#     #+#                  #+#        #+#     #+# #+#    #+# #+#    #+#    #+#         #+#
+###.     ##########/ ###    ###     ###                 ###         ###     ###  ########   ######## ########### ###########
+`;
+
+const ascii2 = `
+#       #
+#                                  #            #                                                     ###     ###
+##                                 ##           ##                                                      #       #
+##                                 ##           ##
+########    /##     /##    ###     ########     ########    /###          /###       /###       /###    ###     ###
+########    / ###   / ###  #### /  ########     ########    / ###  /      / ###  /   / #### /   / ###  /  ###     ###
+##      /   ###     ### /###/      ##           ##      /   ###/      /   ###/   ##  ###/   /   ###/    ##      ##
+##     ##    ###     ##/  ##       ##           ##     ##    ##      ##    ##   ####       ##           ##      ##
+##     ########       /##          ##           ##     ##    ##      ##    ##     ###      ##           ##      ##
+##     #######       / ###         ##           ##     ##    ##      ##    ##       ###    ##           ##      ##
+##     ##           /   ###        ##           ##     ##    ##      ##    ##         ###  ##           ##      ##
+##     ####    /   /     ###       ##           ##     ##    ##      ##    /#    /###  ##  ###     /    ##      ##
+   ##     ######/   /       ### /    ##           ##      ######        ####/ ##  / #### /    ######/     ### /   ### /
+  ##      #####   /         ##/      ##           ##      ####          ###   ##    ###/      #####       ##/     ##/
+`
+
+const ascii3 = `
+
+`
+
 const styles = { display: 'flex', padding: '0px 0px 100px', height: '600px', width: '100%', color: 'white', marginLeft: 'auto', marginRight: 'auto', justifyContent: 'center', alignItems: 'center' }
 
 const titleStyle = {
-    height: 100,
-    marginTop: '5%',
+    // height: 90,
+    marginTop: '3%',
+    fontFamily: 'monospace',
+    whiteSpace: 'pre',
+    fontSize: 7,
+    color: 'var(--title-color)',
+    textShadow: '2px 2px #8f8f8f, -2px -2px white',
     // position: 'absolute',
     // bottom: 0,
   }
@@ -87,7 +123,11 @@ const SplitScreenComponent = () => {
 
   return (
     <div style={appStyle}>
-        <img style={titleStyle} src={"/title2.png"} />
+        {/* <img style={titleStyle} src={"/title2.png"} /> */}
+        <div style={titleStyle}>
+          {ascii2}
+        </div>
+
     <div style={styles}>
       <TextInputArea onGenerate={handleGenerate} />
       <OutputCard text={outputText} imageURLs={generatedImageUrls} loading={loading}/>

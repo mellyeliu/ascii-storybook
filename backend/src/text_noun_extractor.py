@@ -48,9 +48,8 @@ def extract_nouns(text):
     most_frequent_nouns = [
         noun for noun, _ in text_freq.most_common(min(3, len(text_freq)))
     ]
-    bigram = extract_interesting_bigrams(text)
 
-    return most_frequent_nouns, least_common_nouns, bigram
+    return most_frequent_nouns, least_common_nouns
 
 
 def extract_interesting_bigrams(text):

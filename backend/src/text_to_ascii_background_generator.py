@@ -56,11 +56,11 @@ class DalleImageGenerator:
 class TextToAsciiGenerator:
     def __init__(self) -> None:
         self.image_generator = DalleImageGenerator()
-        self.text_prompt = "generate a simple cute line drawing of {}, no background"
+        self.text_prompt = "generate a simple line drawing of {}, no background"
 
     def synthesize(self, text, out_folder):
         dalle_im_path = "/tmp/dalle_im_{}.png"
-        most_freq = extract_nouns(text=text)
+        most_freq, _ = extract_nouns(text=text)
 
         print(f"Synthesizing images for {most_freq}")
         files = []
