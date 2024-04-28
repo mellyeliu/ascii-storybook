@@ -19,11 +19,11 @@
 
   @keyframes bouncebg {
     0%, 100% {
-      transform: translate(20px, -10px);
+      transform: translate(-20px, 10px);
 
     }
     50% {
-      transform: translate(5px, 10px);
+      transform: translate(15px, -10px);
     }
   }
 

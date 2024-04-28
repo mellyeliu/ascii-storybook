@@ -56,7 +56,7 @@ const titleStyle = {
     whiteSpace: 'pre',
     fontSize: 7,
     color: 'var(--title-color)',
-    textShadow: '2px 2px #8f8f8f, -2px -2px white',
+    textShadow: '2px 2px #8f8f8f, -2px -2px #eee',
     // position: 'absolute',
     // bottom: 0,
   }
