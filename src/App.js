@@ -28,17 +28,17 @@ function App() {
   }, []);
   return (
     <div className={'grain-overlay'} style={{
-      // background: 'var(--app-background)',
-      backgroundImage: "url('/grain.png')",
-      backgroundSize: 'cover',
-      zIndex: 100000,
+      background: 'var(--app-background)',
+      // backgroundImage: "url('/grain.png')",
+      // backgroundSize: 'cover',
+      // zIndex: 100000,
       color: 'var(--font-color)', maxHeight: '100vh', minHeight: '100vh', width: '100vw', padding: 0, margin: 0, overflow: 'hidden'}} className="App">
       {positions.map((pos, index) => (
         <div
           key={index}
           // src={ pos.src }
         className={"drift " + (index % 2 === 0 ? 'image' : 'image2')}
-          style={{ color: 'var(--title-color)', position: 'absolute', left: pos.left, top: pos.top, fontSize: pos.width }}
+          style={{ color: 'var(--font-color)', position: 'absolute', left: pos.left, top: pos.top, fontSize: pos.width }}
           alt={`Drifting Image ${index + 1}`}
         >{pos.src}</div>
       ))}
@@ -66,17 +66,17 @@ function App() {
           // className="rotating-image2"
         />
         <img
-          style={{ position: 'absolute', left: '88%', top: '45%', height: 200 }}
+          style={{ opacity: 0.7, position: 'absolute', left: '88%', top: '45%', height: 200 }}
           src={  '/starry.png' }
           className="imagebg"
         />
         <img
-          style={{opacity: 0.7, position: 'absolute', left: '17%', top: '-9%', height: 250 }}
+          style={{opacity: 0.4, position: 'absolute', left: '17%', top: '-9%', height: 250 }}
           src={  '/fairy.png' }
           className="imagebg"
         />
          <img
-          style={{ position: 'absolute', left: '-5%', top: '15%', height: 250 }}
+          style={{ opacity: 0.7, position: 'absolute', left: '-5%', top: '15%', height: 250 }}
           src={  '/starry.png' }
           className="imagebg"/>
 

@@ -1,7 +1,7 @@
 @keyframes bounce {
     0%, 100% {
       transform: translate(10px, -10px);
-      opacity: 0.5;
+      opacity: 0.4;
     }
     /* 25% {
       transform: translate(150px, -50px);
@@ -9,7 +9,7 @@
     } */
     50% {
       transform: translate(5px, 10px);
-      opacity: 0.2;
+      opacity: 0.1;
     }
     /* 75% {
       transform: translate(-100px, 50px);
@@ -43,7 +43,7 @@
   @keyframes bounce2 {
     0%, 100% {
       transform: translate(0px, 0px);
-      opacity: 0.3;
+      opacity: 0.1;
     }
     /* 25% {
       transform: translate(-150px, -200px);
@@ -52,7 +52,7 @@
 
     50% {
       transform: translate(-7px, 10px);
-      opacity: 0.7;
+      opacity: 0.5;
     }
     /* 75% {
       transform: translate(100px, -50px);
@@ -68,22 +68,22 @@
   }
 
   .drift {
-    filter: drop-shadow(5px 5px 3px rgb(236, 236, 236));
+    filter: drop-shadow(0px 0px 3px rgb(236, 236, 236));
   }
 
   .imagebg {
     position: absolute;
     animation: bouncebg 20s infinite ease-in-out;
-    filter: drop-shadow(5px 5px 3px rgb(236, 236, 236));
+    filter: drop-shadow(5px 5px 10px rgb(184, 184, 184, 0.3));
     user-select: none;
     -webkit-user-drag: none;
     transform: scale(1); /* Initial scale */
     transition: transform 0.3s ease;
   }
 
-  .imagebg:hover {
-    transform: scale(1.02) !important; /* Scale up by 20% on hover */
-  }
+  /* .imagebg:hover {
+    transform: scale(1.02) !important;
+  } */
 
   .image2 {
     width: 15px; /* Adjust sizeac as needed */
