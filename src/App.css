@@ -1,17 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Kode+Mono:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive+Mono&family=Fredericka+the+Great&family=Jacquarda+Bastarda+9&family=Kode+Mono:wght@400..700&family=Syne+Mono&family=VT323&display=swap'); */
 
 :root {
   --dark-color: #0d0d0d; /* Define the color variable */
-  --border: 0.5px dashed rgb(208, 208, 208);
-  --font-fam: 'Cormorant Garamond';
+  --border: 0.5px solid rgb(208, 208, 208);
+  --font-fam: 'Kode Mono';
   --font-color: rgb(225, 225, 225);
   --title-color: rgb(11, 11, 11);
   --app-background: rgb(17, 17, 17);
   --title-url: '/title.png';
-  --font-size: 16px !important;
+  --font-size: 12px !important;
 }
 
+@media (max-width: 768px) {
+  .imagebg {
+    display: none;
+  }
+  .title {
+    font-size: 4px !important;
+  }
+  .mobileBox {
+    flex-direction: column !important; /* Stack flex items vertically */
+    justify-content: flex-start !important; /* Aligns items to the start of the flex container */
+    align-items: stretch !important;  /* Stretches the items to fit the container's width */
+  }
+  .mobileS {
+    width: 35% !important;
+  }
+  .title {
+    margin-top: 30% !important;
+  }
+  /* .box {
+    width: 45% !important;
+    margin-right: auto;
+    margin-left: auto;
+    max-height: 300px;
+  } */
+}
 
 .App {
   text-align: center;

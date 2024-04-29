@@ -44,7 +44,7 @@ const TextInputArea = ({ onGenerate }) => {
   }
 
   return (
-    <div style={{ position: 'relative', height: 500, width: '25%', display: 'flex', flexDirection: 'column', marginRight: 30 }}>
+    <div className="mobileS" style={{ position: 'relative', height: 500, width: '25%', display: 'flex', flexDirection: 'column', marginRight: 30 }}>
       <textarea
         value={inputText}
         className="box"

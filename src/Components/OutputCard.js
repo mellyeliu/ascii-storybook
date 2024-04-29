@@ -27,7 +27,7 @@ const OutputCard = ({ text, imageURLs, loading }) => {
   }, []);
 
   return (
-    <div className={'box'} style={
+    <div className={'box mobileS'} style={
             { textAlign: 'left', position: 'relative', fontFamily: 'var(--font-fam)', width: '25%', padding: '10px', border: 'var(--border)', borderRadius: '10px', backgroundColor: 'var(--dark-color)', overflow: 'auto', height: 480, maxHeight: 480 }}>
           {!loading ? (
             <div>

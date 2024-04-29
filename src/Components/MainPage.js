@@ -147,15 +147,15 @@ const SplitScreenComponent = () => {
   };
 
   return (
-    <div style={appStyle}>
+    <div className={'mobileBox'} style={appStyle}>
         {/* <img style={titleStyle} src={"/title2.png"} /> */}
-        <div style={titleStyle}>
+        <div style={titleStyle} className="title">
           {asciiArt}
         </div>
 
     <div style={styles}>
-      <TextInputArea onGenerate={handleGenerate} />
-      <OutputCard text={outputText} imageURLs={generatedImageUrls} loading={loading}/>
+      <TextInputArea className="mobileS" onGenerate={handleGenerate} />
+      <OutputCard className="mobileS" text={outputText} imageURLs={generatedImageUrls} loading={loading}/>
     </div>
     </div>
   );
