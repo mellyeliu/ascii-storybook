@@ -23,7 +23,7 @@ const asciiArt = `
    +#+/     +#++:++#/     +#++:+       +#+    +#++:++#++:++   +#+      +#++:++#++: +#++:++#++ +#+           +#+         +#+
   +#+/     +#+/         +#+  +#+      +#+                   +#+       +#+     +#+        +#+ +#+           +#+         +#+
  #+#/     #+#/        #+#    #+#     #+#                  #+#        #+#     #+# #+#    #+# #+#    #+#    #+#         #+#
-###.     ##########/ ###    ###     ###                 ###         ###     ###  ########   ######## ########### ###########
+   ###.     ##########/ ###    ###     ###                 ###         ###     ###  ########   ######## ########### ###########
 `;
 
 const ascii2 = `
@@ -44,7 +44,11 @@ const ascii2 = `
 `
 
 const ascii3 = `
-
+ _            _         __                   _ _
+| |_ _____  _| |_       \ \    __ _ ___  ___(_|_)
+| __/ _ \ \/ / __|  _____\ \  / _ / __|/ _ _| | |
+| ||  __/>  <| |_  |_____/ / | (_| \__ \ (__| | |
+ \__\___/_/\_\\__|      /_/   \__,_|___/\___|_|_|
 `
 
 const styles = { display: 'flex', padding: '0px 0px 100px', height: '600px', width: '100%', color: 'white', marginLeft: 'auto', marginRight: 'auto', justifyContent: 'center', alignItems: 'center' }
@@ -54,7 +58,7 @@ const titleStyle = {
     marginTop: '3%',
     fontFamily: 'monospace',
     whiteSpace: 'pre',
-    fontSize: 6,
+    fontSize: 7,
     color: 'var(--title-color)',
     textShadow: '2px 2px #8f8f8f, -2px -2px #eee',
     // position: 'absolute',
@@ -93,7 +97,7 @@ const SplitScreenComponent = () => {
               imageUrls.push(firstUrl);
             }
           }
-          
+
           setGeneratedImageUrls(imageUrls);
           setLoading(false);
 
@@ -146,7 +150,7 @@ const SplitScreenComponent = () => {
     <div style={appStyle}>
         {/* <img style={titleStyle} src={"/title2.png"} /> */}
         <div style={titleStyle}>
-          {ascii2}
+          {asciiArt}
         </div>
 
     <div style={styles}>

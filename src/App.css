@@ -3,7 +3,7 @@
 
 :root {
   --dark-color: #0d0d0d; /* Define the color variable */
-  --border: 0.5px solid rgb(208, 208, 208);
+  --border: 0.5px dashed rgb(208, 208, 208);
   --font-fam: 'Cormorant Garamond';
   --font-color: rgb(225, 225, 225);
   --title-color: rgb(11, 11, 11);
