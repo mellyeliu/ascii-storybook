@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import TextInputArea from './TextArea';
 import OutputCard from './OutputCard';
 import { createClient } from "@supabase/supabase-js";
@@ -68,32 +68,52 @@ const supabase = createClient(SUPABASE_URL, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 const SplitScreenComponent = () => {
   const [outputText, setOutputText] = useState('');
   const [responseId, setResponseId] = useState(null);
-  const [intervalId, setIntervalId] = useState(null);
+  const [isRunning, setIsRunning] = useState(false);
   const [loading, setLoading] = useState(false);
   const [generatedImageUrls, setGeneratedImageUrls] = useState([]);
+  const checkIntervalRef = useRef();
+
+  useEffect(() => {
+    // Clear interval on component dismount
+    return () => clearInterval(checkIntervalRef.current);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data, error } = await supabase.storage.from('ascii-images').list(responseId);
         if (data.length) {
-          clearInterval(intervalId);
-          const imageUrls = data.map((d) => `https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/${responseId}/${d.name}`);
+          let imageUrls = data.map((d) => `https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/${responseId}/${d.name}`);
+          if (data.length == 3) {
+            setIsRunning(false);
+          } else {
+            // Images may still be uploading; duplicate first URL so that we don't show gap in generation
+            const firstUrl = imageUrls[0]
+            for (let i = data.length; i < 3; i++) {
+              imageUrls.push(firstUrl);
+            }
+          }
+          
           setGeneratedImageUrls(imageUrls);
-
-          console.log("Set image urls", imageUrls);
           setLoading(false);
+
+          console.log("Set image urls", imageUrls)
         }
       } catch (error) {
         console.log(error)
       }
     }
 
-    if (responseId !== null) {
-      const intervalId = setInterval(fetchData, 5000);
-      setIntervalId(intervalId);
+    if (isRunning) {
+      checkIntervalRef.current = setInterval(
+        fetchData,
+        5000
+      );
+    } else {
+      clearInterval(checkIntervalRef.current);
+      checkIntervalRef.current = null;
     }
-  }, [responseId]);
+  }, [isRunning]);
 
   const handleGenerate = (inputText) => {
     setLoading(true);
@@ -116,7 +136,8 @@ const SplitScreenComponent = () => {
     })
     .then(data => {
       if (data.length) {
-        setResponseId(data[0].id)
+        setResponseId(data[0].id);
+        setIsRunning(true);
       }
     })
   };

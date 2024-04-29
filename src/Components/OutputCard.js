@@ -5,7 +5,6 @@ import {MutatingDots} from 'react-loader-spinner';
 
 
 const OutputCard = ({ text, imageURLs, loading }) => {
-  console.log(imageURLs);
   const [currentImage, setCurrentImage] = useState(0);
 
   const placeHolderImages = ['https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/95/out_2.png', '/fairy.png', '/butterfly.png', 'https://uvramivzkpfyjktzwchk.supabase.co/storage/v1/object/public/ascii-images/88/out_0.png']
@@ -20,13 +19,12 @@ const OutputCard = ({ text, imageURLs, loading }) => {
       setCurrentImage(currentImage => (currentImage + 1) % 3);
     };
 
-    const intervalId = setInterval(updateImage, 2000);  // Changes every 3000 milliseconds
+    const intervalId = setInterval(updateImage, 2000);  // Changes every 2000 milliseconds
 
     return () => clearInterval(intervalId);
   }, []);
-  console.log(imageURLs);
+  
   return (
-
     <div className={'box'} style={
             { textAlign: 'left', position: 'relative', fontFamily: 'var(--font-fam)', width: '25%', padding: '10px', border: 'var(--border)', borderRadius: '10px', backgroundColor: 'var(--dark-color)', overflow: 'auto', height: 480, maxHeight: 480 }}>
           {!loading ? (
