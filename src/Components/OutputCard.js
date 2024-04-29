@@ -7,7 +7,6 @@ import SentenceToggler from './SentenceToggler';
 
 const OutputCard = ({ text, imageURLs, loading }) => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [isImages, setisImages] = useState(false);
   console.log(text);
 
   const placeHolderImages = [ '/butterfly.png', '/fairy.png', '/globe.png']
@@ -15,7 +14,7 @@ const OutputCard = ({ text, imageURLs, loading }) => {
 
   if (imageURLs.length === 0) {
     imageURLs = placeHolderImages;
-  } else {setisImages(true)}
+  }
 
   useEffect(() => {
     const updateImage = () => {
