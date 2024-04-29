@@ -37,10 +37,14 @@ const TextInputArea = ({ onGenerate }) => {
     cursor: 'pointer',
     fontFamily: 'var(--font-fam)',
     fontSize: 'var(--font-size)',
+    position: 'absolute',
+    top: "83%",
+    width: '80%',
+    marginLeft: '10%'
   }
 
   return (
-    <div style={{ height: 500, width: '25%', display: 'flex', flexDirection: 'column', marginRight: 30 }}>
+    <div style={{ position: 'relative', height: 500, width: '25%', display: 'flex', flexDirection: 'column', marginRight: 30 }}>
       <textarea
         value={inputText}
         className="box"

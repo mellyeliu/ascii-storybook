@@ -4,17 +4,22 @@
 :root {
   --dark-color: #0d0d0d; /* Define the color variable */
   --border: 0.5px solid rgb(208, 208, 208);
-  --font-fam: 'Syne Mono';
+  --font-fam: 'Cormorant Garamond';
   --font-color: rgb(225, 225, 225);
   --title-color: rgb(11, 11, 11);
   --app-background: rgb(17, 17, 17);
   --title-url: '/title.png';
-  --font-size: 14px !important;
+  --font-size: 16px !important;
 }
 
 
 .App {
   text-align: center;
+}
+
+textarea {
+  font-family: var(--font-fam);
+  font-size: var(--font-size) !important;
 }
 
 .App-logo {
