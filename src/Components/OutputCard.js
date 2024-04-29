@@ -9,7 +9,7 @@ const OutputCard = ({ text, imageURLs, loading }) => {
   const [currentImage, setCurrentImage] = useState(0);
   console.log(text);
 
-  const placeHolderImages = [ '/fairy.png', '/butterfly.png', '/fairy.png']
+  const placeHolderImages = [ '/butterfly.png', '/fairy.png', '/globe.png']
   const loadingText = ["Extracting key nouns from text...", "Feeding your words to DALL-E...", "Generating ASCII from images..."]
 
   if (imageURLs.length === 0) {
