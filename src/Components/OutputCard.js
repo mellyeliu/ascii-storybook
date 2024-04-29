@@ -7,6 +7,7 @@ import SentenceToggler from './SentenceToggler';
 
 const OutputCard = ({ text, imageURLs, loading }) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isImages, setisImages] = useState(false);
   console.log(text);
 
   const placeHolderImages = [ '/butterfly.png', '/fairy.png', '/globe.png']
@@ -14,14 +15,14 @@ const OutputCard = ({ text, imageURLs, loading }) => {
 
   if (imageURLs.length === 0) {
     imageURLs = placeHolderImages;
-  }
+  } else {setisImages(true)}
 
   useEffect(() => {
     const updateImage = () => {
       setCurrentImage(currentImage => (currentImage + 1) % 3);
     };
 
-    const intervalId = setInterval(updateImage, 2000);  // Changes every 2000 milliseconds
+    const intervalId = setInterval(updateImage, 4000);  // Changes every 3000 milliseconds
 
     return () => clearInterval(intervalId);
   }, []);
