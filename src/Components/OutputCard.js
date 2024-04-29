@@ -6,7 +6,6 @@ import SentenceToggler from './SentenceToggler';
 
 
 const OutputCard = ({ text, imageURLs, loading }) => {
-  console.log(imageURLs);
   const [currentImage, setCurrentImage] = useState(0);
   console.log(text);
 
@@ -22,13 +21,12 @@ const OutputCard = ({ text, imageURLs, loading }) => {
       setCurrentImage(currentImage => (currentImage + 1) % 3);
     };
 
-    const intervalId = setInterval(updateImage, 4000);  // Changes every 3000 milliseconds
+    const intervalId = setInterval(updateImage, 2000);  // Changes every 2000 milliseconds
 
     return () => clearInterval(intervalId);
   }, []);
-  console.log(imageURLs);
-  return (
 
+  return (
     <div className={'box'} style={
             { textAlign: 'left', position: 'relative', fontFamily: 'var(--font-fam)', width: '25%', padding: '10px', border: 'var(--border)', borderRadius: '10px', backgroundColor: 'var(--dark-color)', overflow: 'auto', height: 480, maxHeight: 480 }}>
           {!loading ? (

@@ -58,41 +58,42 @@ class TextToAsciiGenerator:
         self.image_generator = DalleImageGenerator()
         self.text_prompt = "generate a simple line drawing of {}, no background"
 
+    def synthesize_from_word(self, noun, out_folder):
+        dalle_im_path = f"/tmp/dalle_im_{noun}.png"
+        print(f"============={noun}=============")
+        self.image_generator.synthesize(self.text_prompt.format(noun), dalle_im_path)
+        dalle_im = Image.open(dalle_im_path)
+        dalle_im_no_bg = remove(dalle_im)
+        # Saving the image in the given path
+        no_bg_path = f"/tmp/dalle_im_no_bg_{noun}.png"
+        dalle_im_no_bg.save(no_bg_path)
+        png_im_path = f"/tmp/dalle_im_no_bg_{noun}-ascii-art.png"
+        result = subprocess.run(
+            [
+                "ascii-image-converter",
+                no_bg_path,
+                "-W",
+                "150",
+                "--save-img",
+                "/tmp",
+            ],
+            stdout=subprocess.PIPE,
+        )
+
+        out_file = f"{out_folder}/out_{noun}.png"
+        removeBlackBackground(png_im_path, out_file)
+        return out_file
+
+        
     def synthesize(self, text, out_folder):
-        dalle_im_path = "/tmp/dalle_im_{}.png"
         most_freq, _ = extract_nouns(text=text)
 
         print(f"Synthesizing images for {most_freq}")
         files = []
         Path(out_folder).mkdir(parents=True, exist_ok=True)
         for i, n in enumerate(most_freq):
-            print(f"============={n}=============")
-            curr_path = dalle_im_path.format(i)
-            self.image_generator.synthesize(self.text_prompt.format(n), curr_path)
-            dalle_im = Image.open(curr_path)
-            dalle_im_no_bg = remove(dalle_im)
-
-            # Saving the image in the given path
-            no_bg_path = f"/tmp/dalle_im_no_bg_{i}.png"
-            dalle_im_no_bg.save(no_bg_path)
-            png_im_path = f"/tmp/dalle_im_no_bg_{i}-ascii-art.png"
-            result = subprocess.run(
-                [
-                    "ascii-image-converter",
-                    no_bg_path,
-                    "-W",
-                    "150",
-                    "--save-img",
-                    "/tmp",
-                ],
-                stdout=subprocess.PIPE,
-            )
-
-            out_file = f"{out_folder}/out_{i}.png"
-            removeBlackBackground(png_im_path, out_file)
-            files.append(out_file)
+            files.append(self.synthesize_from_word(n, out_folder))
         return files
-
 
 if __name__ == "__main__":
     ascii_generator = TextToAsciiGenerator()
