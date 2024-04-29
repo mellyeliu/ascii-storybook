@@ -7,7 +7,6 @@ from supabase import create_client
 
 load_dotenv()
 
-
 def create_supabase_clent():
     SUPABASE_PROJECT_URL: str = os.getenv('SUPABASE_PROJECT_URL')
     SUPABASE_API_KEY: str = os.getenv('SUPABASE_API_KEY')
@@ -38,7 +37,8 @@ def create_app() -> Flask:
     #         task_ignore_result=True,
     #     ),
     # )
-    CORS(app, resources={r"/*": {"origins": ["*"]}})
+    CORS(app, resources={r"/*": {"origins": ["*text2ascii.netlify.app/", "*serif.app/*"]}})
+    # CORS(app, resources={r"/*": {"origins": ["*"]}})
     # app.config.from_prefixed_env()
     # celery_init_app(app)
     return app

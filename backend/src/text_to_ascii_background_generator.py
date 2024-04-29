@@ -7,7 +7,8 @@ from openai import OpenAI
 from PIL import Image
 from rembg import remove
 from src.text_noun_extractor import extract_interesting_bigrams, extract_nouns
-
+import platform
+import ctypes
 OPENAI_API_KEY = os.getenv("OPENAI_KEY")
 
 text = """
@@ -57,7 +58,8 @@ class TextToAsciiGenerator:
     def __init__(self) -> None:
         self.image_generator = DalleImageGenerator()
         self.text_prompt = "generate a simple line drawing of {}, no background"
-
+        self.architecture = "x86_64" if platform.machine() in ("i386", "AMD64", "x86_64") else "arm64"
+        self.ascii_library = ctypes.CDLL(f"src/libraries/ascii_image_converter_{self.architecture}.so")
     def synthesize_from_word(self, noun, out_folder):
         dalle_im_path = f"/tmp/dalle_im_{noun}.png"
         print(f"============={noun}=============")
@@ -68,17 +70,19 @@ class TextToAsciiGenerator:
         no_bg_path = f"/tmp/dalle_im_no_bg_{noun}.png"
         dalle_im_no_bg.save(no_bg_path)
         png_im_path = f"/tmp/dalle_im_no_bg_{noun}-ascii-art.png"
-        result = subprocess.run(
-            [
-                "ascii-image-converter",
-                no_bg_path,
-                "-W",
-                "150",
-                "--save-img",
-                "/tmp",
-            ],
-            stdout=subprocess.PIPE,
-        )
+
+        self.ascii_library.ConvertAscii(no_bg_path.encode('UTF-8'), b'/tmp')
+        # result = subprocess.run(
+        #     [
+        #         "ascii-image-converter",
+        #         no_bg_path,
+        #         "-W",
+        #         "150",
+        #         "--save-img",
+        #         "/tmp",
+        #     ],
+        #     stdout=subprocess.PIPE,
+        # )
 
         out_file = f"{out_folder}/out_{noun}.png"
         removeBlackBackground(png_im_path, out_file)
