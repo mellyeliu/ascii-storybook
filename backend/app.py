@@ -5,6 +5,8 @@ from pathlib import Path
 from src.text_to_ascii_background_generator import TextToAsciiGenerator
 from multiprocessing import Process
 import os
+import logging
+
 supabase_client = create_supabase_clent()
 ascii_generator = TextToAsciiGenerator()
 flask_app = create_app()
@@ -51,5 +53,11 @@ def create_ascii():
     response = jsonify(table_result.data)
     return response
 
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    flask_app.logger.handlers = gunicorn_logger.handlers
+    flask_app.logger.setLevel(gunicorn_logger.level)
 if __name__ == '__main__':
-   flask_app.run(port=5000, debug=True)
+   port = int(os.getenv('PORT', 5000))
+   flask_app.run(port=port, debug=True)
+

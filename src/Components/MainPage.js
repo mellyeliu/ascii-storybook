@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef} from 'react';
 import TextInputArea from './TextArea';
 import OutputCard from './OutputCard';
 import { createClient } from "@supabase/supabase-js";
+import {isDev} from '../helper';
 // import Loader from 'react-loader-spinner';
 
 const appStyle = {
@@ -118,8 +119,9 @@ const SplitScreenComponent = () => {
   const handleGenerate = (inputText) => {
     setLoading(true);
     setOutputText(`${inputText}`);
+    const endpoint = isDev ? "http://127.0.0.1:5000/generate" : "https://serif-ascii-client-5c4f8b7f3575.herokuapp.com/generate"
 
-    fetch("http://127.0.0.1:5000/generate", {
+    fetch(endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
