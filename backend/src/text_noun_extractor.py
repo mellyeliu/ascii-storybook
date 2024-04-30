@@ -8,10 +8,10 @@ from nltk.tokenize import word_tokenize
 from nltk.util import bigrams
 
 
-nltk.download("averaged_perceptron_tagger")
-nltk.download("punkt")
-nltk.download("stopwords")
-nltk.download("reuters")
+# nltk.download("averaged_perceptron_tagger")
+# nltk.download("punkt")
+# nltk.download("stopwords")
+# nltk.download("reuters")
 
 
 def extract_nouns(text):

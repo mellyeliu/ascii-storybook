@@ -2,10 +2,13 @@ import os
 import subprocess
 import urllib
 from pathlib import Path
+import math
 
 from openai import OpenAI
 from PIL import Image
-from rembg import remove
+import itertools
+import numpy as np
+# from rembg import remove
 from src.text_noun_extractor import extract_interesting_bigrams, extract_nouns
 import platform
 import ctypes
@@ -33,7 +36,45 @@ def removeBlackBackground(image_file, out_file):
 
     img.putdata(newData)
     img.save(out_file, "PNG")
+    img.close()
 
+def _get_avg_background_color(image: Image):
+    # We assume that most pixels in the upper row corner will map to 
+    # Dalle's "background color"
+    # Get average of these colors
+    
+    im_crop = image.crop((0, 0, 300, 300))
+    im_data = np.array(im_crop)
+    avg_color = im_data.mean(axis=0)
+    print(avg_color)
+    return avg_color
+
+def luminance(pixel):
+    return (0.299 * pixel[0] + 0.587 * pixel[1] + 0.114 * pixel[2])
+
+def is_similar(pixel_a, pixel_b, threshold):
+    return abs(luminance(pixel_a) - luminance(pixel_b)) < threshold
+
+
+def tryRemoveImageBackground(image_file, out_file, thresh):
+    img = Image.open(image_file)
+    img = img.convert("RGBA")
+
+    datas = img.getdata()
+
+    newData = []
+
+    background_color = _get_avg_background_color(datas)
+
+    for item in datas:
+        if is_similar(np.array(item)[:-1], background_color[:-1], thresh): 
+            newData.append((0, 0, 0, 0))
+        else:
+            newData.append(item)
+
+    img.putdata(newData)
+    img.save(out_file, "PNG")
+    img.close()
 
 class DalleImageGenerator:
     def __init__(self) -> None:
@@ -57,33 +98,20 @@ class DalleImageGenerator:
 class TextToAsciiGenerator:
     def __init__(self) -> None:
         self.image_generator = DalleImageGenerator()
-        self.text_prompt = "generate a simple line drawing of {}, no background"
+        self.text_prompt = "generate a simple line drawing of {}, background is a single, solid red color. Make the subjects of the image white."
         self.architecture = "x86_64" if platform.machine() in ("i386", "AMD64", "x86_64") else "arm64"
         self.ascii_library = ctypes.CDLL(f"src/libraries/ascii_image_converter_{self.architecture}.so")
+
     def synthesize_from_word(self, noun, out_folder):
         dalle_im_path = f"/tmp/dalle_im_{noun}.png"
         print(f"============={noun}=============")
         self.image_generator.synthesize(self.text_prompt.format(noun), dalle_im_path)
-        dalle_im = Image.open(dalle_im_path)
-        dalle_im_no_bg = remove(dalle_im)
-        # Saving the image in the given path
         no_bg_path = f"/tmp/dalle_im_no_bg_{noun}.png"
-        dalle_im_no_bg.save(no_bg_path)
+        tryRemoveImageBackground(dalle_im_path, no_bg_path, 50)
         png_im_path = f"/tmp/dalle_im_no_bg_{noun}-ascii-art.png"
-
+        print(f"Removed background for {dalle_im_path} ")
         self.ascii_library.ConvertAscii(no_bg_path.encode('UTF-8'), b'/tmp')
-        # result = subprocess.run(
-        #     [
-        #         "ascii-image-converter",
-        #         no_bg_path,
-        #         "-W",
-        #         "150",
-        #         "--save-img",
-        #         "/tmp",
-        #     ],
-        #     stdout=subprocess.PIPE,
-        # )
-
+        print(f"Converted ascii for {dalle_im_path} ")
         out_file = f"{out_folder}/out_{noun}.png"
         removeBlackBackground(png_im_path, out_file)
         return out_file

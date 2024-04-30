@@ -37,8 +37,8 @@ def create_app() -> Flask:
     #         task_ignore_result=True,
     #     ),
     # )
-    CORS(app, resources={r"/*": {"origins": ["*text2ascii.netlify.app/", "*serif.app/*"]}})
-    # CORS(app, resources={r"/*": {"origins": ["*"]}})
+    # CORS(app, resources={r"/*": {"origins": ["*text2ascii.netlify.app/", "*serif.app/*"]}})
+    CORS(app, resources={r"/*": {"origins": ["*"]}})
     # app.config.from_prefixed_env()
     # celery_init_app(app)
     return app
