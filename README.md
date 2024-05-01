@@ -2,7 +2,7 @@
 
 <img width="1491" alt="image" src="https://github.com/mellyeliu/ascii-client/assets/64865235/91f49add-162b-4b16-a5b9-8183eab10493">
 
-[Serif Imagine](https://text2ascii.netlify.app/) is a tool to generate an ascii storybook video from a passage of text. (https://text2ascii.netlify.app/)
+[Serif Imagine](https://text2ascii.netlify.app/) is a tool to generate an ascii storybook video from a passage of text.
 
 ## Setup
 To set up the client, install the node requirements and start the localhost.
