@@ -2,22 +2,23 @@
 
 <img width="1491" alt="image" src="https://github.com/mellyeliu/ascii-client/assets/64865235/91f49add-162b-4b16-a5b9-8183eab10493">
 
-Serif Imagine is a tool to generate an ascii storybook video from a passage of text. 
+[Serif Imagine](https://text2ascii.netlify.app/) is a tool to generate an ascii storybook video from a passage of text. (https://text2ascii.netlify.app/)
 
 ## Setup
 To set up the client, install the node requirements and start the localhost.
 
-`npm i`
-
-`npm run start`
+```
+npm i
+npm run start
+```
 
 To set up the server, navigate to /backend and download the requirements. From there, you can start the server.
 
-`cd backend`
-
-`pip install requirements.py`
-
-`flask run`
+```
+cd backend
+pip install requirements.txt
+flask run
+```
 
 ## Word Extraction
 When entering a query into the client, you will see the text outputted to the console. 
