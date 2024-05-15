@@ -1,18 +1,12 @@
-# Installation
+# Installation & Running App
+You should have Docker installed
 ```
-brew tap redis-stack/redis-stack
-brew install redis-stack
-
-pip install -r requirements.txt
-```
-# Running app
-```
-# Terminal 1
-redis-server
-# Terminal 2
-celery -A tasks worker --loglevel INFO
-# Terminal 2
-flask run
+docker compose up
 ```
 
-# Testing endpoint
+# Example POST
+```
+curl --request POST 'http://127.0.0.1:5001/generate' --header \
+'Content-Type: application/json' --data \
+'{"text": "Sometimes I want to be a bird"}'
+```

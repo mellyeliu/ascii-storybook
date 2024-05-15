@@ -49,7 +49,13 @@ def create_ascii():
     # TODO: Validate data before adding to table
     table_result = supabase_client.table("ascii_submissions").insert(data).execute()
     response_id = table_result.data[0]['id']
-    multiprocessing.set_start_method('spawn')
+    current_method = multiprocessing.get_start_method(allow_none=True)
+    if current_method is None:
+        # If not set, set the start method to the desired method
+        multiprocessing.set_start_method("spawn")
+        print(f"Start method set to spawn")
+    else:
+        print(f"Start method already set to {current_method}")
     generate_ascii_images(response_id, data['text'])
     response = jsonify(table_result.data)
     return response
