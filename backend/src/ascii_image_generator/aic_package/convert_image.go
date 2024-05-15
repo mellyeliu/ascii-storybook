@@ -23,12 +23,11 @@ import (
 	"os"
 	"strings"
 
-	imgManip "github.com/TheZoraiz/ascii-image-converter/image_manipulation"
+	imgManip "ascii-image-converter/image_manipulation"
 )
 
 // This function decodes the passed image and returns an ascii art string, optionaly saving it as a .txt and/or .png file
 func pathIsImage(imagePath, urlImgName string, pathIsURl bool, urlImgBytes, pipedInputBytes []byte, localImg *os.File) (string, error) {
-
 	var (
 		imData image.Image
 		err    error
@@ -48,14 +47,12 @@ func pathIsImage(imagePath, urlImgName string, pathIsURl bool, urlImgBytes, pipe
 			return "", fmt.Errorf("can't decode %v: %v", imagePath, err)
 		}
 	}
-
 	imgSet, err := imgManip.ConvertToAsciiPixels(imData, dimensions, width, height, flipX, flipY, full, braille, dither)
 	if err != nil {
 		return "", err
 	}
 
 	var asciiSet [][]imgManip.AsciiChar
-
 	if braille {
 		asciiSet, err = imgManip.ConvertToBrailleChars(imgSet, negative, colored, grayscale, colorBg, fontColor, threshold)
 	} else {
@@ -79,7 +76,6 @@ func pathIsImage(imagePath, urlImgName string, pathIsURl bool, urlImgBytes, pipe
 			return "", fmt.Errorf("can't save file: %v", err)
 		}
 	}
-
 	// Save ascii art as .txt file before printing it, if --save-txt flag is passed
 	if saveTxtPath != "" {
 		if err := saveAsciiArt(
@@ -93,7 +89,6 @@ func pathIsImage(imagePath, urlImgName string, pathIsURl bool, urlImgBytes, pipe
 			return "", fmt.Errorf("can't save file: %v", err)
 		}
 	}
-
 	ascii := flattenAscii(asciiSet, colored || grayscale, false)
 	result := strings.Join(ascii, "\n")
 

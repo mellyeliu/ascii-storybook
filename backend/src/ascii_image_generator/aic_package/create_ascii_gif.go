@@ -22,7 +22,7 @@ import (
 
 	_ "embed"
 
-	imgManip "github.com/TheZoraiz/ascii-image-converter/image_manipulation"
+	imgManip "ascii-image-converter/image_manipulation"
 	"github.com/golang/freetype/truetype"
 
 	"github.com/fogleman/gg"

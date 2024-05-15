@@ -4,6 +4,7 @@ from src.text_noun_extractor import extract_nouns
 from pathlib import Path
 from src.text_to_ascii_background_generator import TextToAsciiGenerator
 from multiprocessing import Process
+import multiprocessing
 import os
 import logging
 
@@ -22,7 +23,7 @@ def async_synthesize_and_upload_image(*args):
     local_file = ascii_generator.synthesize_from_word(noun, out_folder)
 
     supabase_storage_path = f"/{request_id}/{os.path.basename(local_file)}"
-    uploaded_video_data = supabase_client.storage.from_('ascii-images').upload(supabase_storage_path, local_file, {
+    supabase_client.storage.from_('ascii-images').upload(supabase_storage_path, local_file, {
         "contentType": "image/png",
     })
     print(f"Successfully uploaded image for {noun} to {supabase_storage_path}!")
@@ -48,16 +49,33 @@ def create_ascii():
     # TODO: Validate data before adding to table
     table_result = supabase_client.table("ascii_submissions").insert(data).execute()
     response_id = table_result.data[0]['id']
-    print(data)
+    multiprocessing.set_start_method('spawn')
     generate_ascii_images(response_id, data['text'])
     response = jsonify(table_result.data)
     return response
+
+def convert_ascii_from_im_file(*args):
+    im_file = args[0]
+    out_file = ascii_generator.convert_ascii(im_file)
+    return out_file
+
+@flask_app.route('/test-ascii-generation', methods=['POST', 'OPTIONS'])
+def test_ascii_generation():
+    multiprocessing.set_start_method('spawn')
+    if request.method == 'OPTIONS':
+        return {}
+    local_im_file = '/app/src/images/v1_txt2img_0_53.png'
+    p = Process(target=convert_ascii_from_im_file, args=(local_im_file,))
+    p.start()
+    return "doing stuff for testing"
 
 if __name__ != '__main__':
     gunicorn_logger = logging.getLogger('gunicorn.error')
     flask_app.logger.handlers = gunicorn_logger.handlers
     flask_app.logger.setLevel(gunicorn_logger.level)
+
 if __name__ == '__main__':
    port = int(os.getenv('PORT', 5000))
    flask_app.run(port=port, debug=True)
+
 

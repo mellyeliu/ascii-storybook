@@ -2,7 +2,12 @@ package main
 
 import ("C"
 		"fmt")
-import "github.com/TheZoraiz/ascii-image-converter/aic_package"
+import "ascii-image-converter/aic_package"
+
+func DummyExample(filePath string, flags aic_package.Flags) (string, error) {
+	fmt.Println("dummy example")
+	return "return", nil
+}
 //export ConvertAscii
 func ConvertAscii(filePath *C.char, outPath *C.char) *C.char {
     // Assuming Convert is already implemented and returns a string
@@ -31,7 +36,7 @@ func ConvertAscii(filePath *C.char, outPath *C.char) *C.char {
 		Dither:              false,
 		OnlySave:            false,
 	}
-	fmt.Println("Converted filePath:", C.GoString(filePath))
+	fmt.Println("Converted filePath2:", C.GoString(filePath))
     result, err := aic_package.Convert(C.GoString(filePath), flags)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)

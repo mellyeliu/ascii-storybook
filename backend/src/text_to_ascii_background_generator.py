@@ -56,8 +56,9 @@ def is_similar(pixel_a, pixel_b, threshold):
     return abs(luminance(pixel_a) - luminance(pixel_b)) < threshold
 
 
-def tryRemoveImageBackground(image_file, out_file, thresh):
+def tryRemoveImageBackground(image_file, out_file, thresh, resize=(256,256)):
     img = Image.open(image_file)
+    img.thumbnail(resize, Image.Resampling.LANCZOS)
     img = img.convert("RGBA")
 
     datas = img.getdata()
@@ -100,7 +101,8 @@ class TextToAsciiGenerator:
         self.image_generator = DalleImageGenerator()
         self.text_prompt = "generate a simple line drawing of {}, background is a single, solid red color. Make the subjects of the image white."
         self.architecture = "x86_64" if platform.machine() in ("i386", "AMD64", "x86_64") else "arm64"
-        self.ascii_library = ctypes.CDLL(f"src/libraries/ascii_image_converter_{self.architecture}.so")
+        # self.ascii_library = ctypes.CDLL(f"src/libraries/ascii_image_converter_{self.architecture}.so")
+        self.ascii_library = ctypes.CDLL("/app/src/libraries/ascii_image_generator.so")
 
     def synthesize_from_word(self, noun, out_folder):
         dalle_im_path = f"/tmp/dalle_im_{noun}.png"
@@ -116,7 +118,6 @@ class TextToAsciiGenerator:
         removeBlackBackground(png_im_path, out_file)
         return out_file
 
-        
     def synthesize(self, text, out_folder):
         most_freq, _ = extract_nouns(text=text)
 
@@ -127,6 +128,13 @@ class TextToAsciiGenerator:
             files.append(self.synthesize_from_word(n, out_folder))
         return files
 
+    def convert_ascii(self, im_path):
+        self.ascii_library.ConvertAscii(im_path.encode('UTF-8'), b'/tmp')
+        print(f"Converted ascii for {im_path} ")
+        im_basename = os.path.basename(im_path)
+        converted_im_path = f"/tmp/{im_basename}-ascii-arg.png"
+        return converted_im_path
+    
 if __name__ == "__main__":
     ascii_generator = TextToAsciiGenerator()
     ascii_generator.synthesize(text, "src/images")

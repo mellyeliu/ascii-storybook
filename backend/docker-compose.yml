@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - SUPABASE_PROJECT_URL=$SUPABASE_PROJECT_URL
+        - SUPABASE_API_KEY=$SUPABASE_API_KEY
+        - OPENAI_API_KEY=$OPENAI_API_KEY
+    ports:
+      - "5001:50505"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+      SUPABASE_PROJECT_URL: ${SUPABASE_PROJECT_URL}
+      SUPABASE_API_KEY: ${SUPABASE_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    

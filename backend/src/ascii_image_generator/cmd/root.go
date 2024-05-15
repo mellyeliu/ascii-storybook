@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/TheZoraiz/ascii-image-converter/aic_package"
+	"ascii-image-converter/aic_package"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
@@ -175,7 +175,7 @@ func init() {
 	defaultUsageTemplate := rootCmd.UsageTemplate()
 	rootCmd.SetUsageTemplate(defaultUsageTemplate + "\nCopyright © 2021 Zoraiz Hassan <hzoraiz8@gmail.com>\n" +
 		"Distributed under the Apache License Version 2.0 (Apache-2.0)\n" +
-		"For further details, visit https://github.com/TheZoraiz/ascii-image-converter\n")
+		"For further details, visit https://ascii-image-converter\n")
 }
 
 // initConfig reads in config file and ENV variables if set.

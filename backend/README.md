@@ -14,3 +14,5 @@ celery -A tasks worker --loglevel INFO
 # Terminal 2
 flask run
 ```
+
+# Testing endpoint

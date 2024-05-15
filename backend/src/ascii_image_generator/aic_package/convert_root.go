@@ -78,7 +78,7 @@ and a aic_package.Flags literal as the second argument, with which it alters
 the returned ascii art string.
 */
 func Convert(filePath string, flags Flags) (string, error) {
-
+	fmt.Println("Starting convert")
 	if flags.Dimensions == nil {
 		dimensions = nil
 	} else {
@@ -120,7 +120,6 @@ func Convert(filePath string, flags Flags) (string, error) {
 	pathIsURl := isURL(filePath)
 
 	// Different modes of reading data depending upon whether or not filePath is a url
-
 	if filePath != "-" {
 		if pathIsURl {
 			fmt.Printf("Fetching file from url...\r")
@@ -140,18 +139,15 @@ func Convert(filePath string, flags Flags) (string, error) {
 			fmt.Printf("                          \r") // To erase "Fetching image from url..." text from terminal
 
 		} else {
-
 			localFile, err = os.Open(filePath)
 			if err != nil {
 				return "", fmt.Errorf("unable to open file: %v", err)
 			}
 			defer localFile.Close()
-
 		}
 
 	} else {
 		// Check file/data type of piped input
-
 		if !isInputFromPipe() {
 			return "", fmt.Errorf("there is no input being piped to stdin")
 		}
@@ -198,7 +194,6 @@ func Convert(filePath string, flags Flags) (string, error) {
 	} else if braille {
 		tempFont, _ = truetype.Parse(embeddedDejaVuObliqueFont)
 	}
-
 	if inputIsGif {
 		return "", pathIsGif(filePath, urlImgName, pathIsURl, urlImgBytes, pipedInputBytes, localFile)
 	} else {

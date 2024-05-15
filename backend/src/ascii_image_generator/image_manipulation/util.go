@@ -21,7 +21,7 @@ import (
 	"image"
 	"image/color"
 
-	"github.com/TheZoraiz/ascii-image-converter/aic_package/winsize"
+	"ascii-image-converter/aic_package/winsize"
 	"github.com/disintegration/imaging"
 	gookitColor "github.com/gookit/color"
 	"github.com/makeworld-the-better-one/dither/v2"

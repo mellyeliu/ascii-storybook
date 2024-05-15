@@ -123,8 +123,8 @@ const SplitScreenComponent = () => {
   const handleGenerate = (inputText) => {
     setLoading(true);
     setOutputText(`${inputText}`);
-    const endpoint = isDev ? "http://127.0.0.1:5000/generate" : "https://serif-ascii-client-5c4f8b7f3575.herokuapp.com/generate"
-
+    // const endpoint = isDev ? "http://127.0.0.1:5000/generate" : "https://serif-ascii-client-5c4f8b7f3575.herokuapp.com/generate"
+    const endpoint = "https://serif-confessions.azurewebsites.net/generate"
     fetch(endpoint, {
         method: 'POST',
         headers: {

@@ -1,4 +1,4 @@
-module github.com/TheZoraiz/ascii-image-converter
+module ascii-image-converter
 
 go 1.17
 
