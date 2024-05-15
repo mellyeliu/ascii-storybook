@@ -124,7 +124,7 @@ const SplitScreenComponent = () => {
     setLoading(true);
     setOutputText(`${inputText}`);
     //const endpoint = isDev ? "http://127.0.0.1:5001/generate" : "http://text2ascii.azurewebsites.net/generate"
-    const endpoint = "http://text2ascii.azurewebsites.net/generate"
+    const endpoint = "https://text2ascii.azurewebsites.net/generate"
     fetch(endpoint, {
         method: 'POST',
         headers: {
