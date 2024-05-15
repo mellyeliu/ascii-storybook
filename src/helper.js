@@ -4,7 +4,8 @@ const development = !process.env.NODE_ENV || process.env.NODE_ENV === 'developme
 
 export function isDev()
 {
-    return development;
+    return false;
+   //return development;
 }
 
 function create_UUID() {
@@ -24,7 +25,7 @@ export function generateCookie(cookie_name) {
     if (cookie == "") {
       let cookie_id = create_UUID();
       let cookie_expiration = 365;
-  
+
       const d = new Date();
       d.setTime(d.getTime() + cookie_expiration * 24 * 60 * 60 * 1000);
       let expires = ";expires=" + d.toUTCString();
@@ -54,4 +55,3 @@ export function getCookie(cookie_name) {
     }
     return "";
 }
-  
