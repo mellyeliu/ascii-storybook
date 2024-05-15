@@ -4,8 +4,7 @@ const development = !process.env.NODE_ENV || process.env.NODE_ENV === 'developme
 
 export function isDev()
 {
-    return false;
-   //return development;
+   return development;
 }
 
 function create_UUID() {
