@@ -3,16 +3,9 @@ from collections import Counter
 
 import nltk
 from nltk import FreqDist, pos_tag
-from nltk.corpus import reuters, stopwords
+from nltk.corpus import reuters, stopwords, words
 from nltk.tokenize import word_tokenize
 from nltk.util import bigrams
-
-
-# nltk.download("averaged_perceptron_tagger")
-# nltk.download("punkt")
-# nltk.download("stopwords")
-# nltk.download("reuters")
-
 
 def extract_nouns(text):
     words = word_tokenize(text)
@@ -59,10 +52,13 @@ def extract_interesting_bigrams(text):
 
     # Filter out stopwords and punctuation, and collect nouns
     stop_words = set(stopwords.words("english"))
+    stop_words.add("dream")
+
+    valid_words = set(words.words())
     filtered_tokens = [
         word.lower()
         for word, tag in tagged_tokens
-        if word.lower() not in stop_words and word.isalpha() and word != "dream"
+        if word.lower() not in stop_words and word in valid_words
     ]
     nouns = [word for word, tag in tagged_tokens if tag.startswith("NN")]
 

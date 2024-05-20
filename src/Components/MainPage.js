@@ -122,6 +122,7 @@ const SplitScreenComponent = () => {
 
   const handleGenerate = (inputText) => {
     setLoading(true);
+    setIsRunning(false);
     setOutputText(`${inputText}`);
     const endpoint = isDev() ? "http://127.0.0.1:5001/generate" : "https://text2ascii.azurewebsites.net/generate"
     fetch(endpoint, {
@@ -143,6 +144,8 @@ const SplitScreenComponent = () => {
       if (data.length) {
         setResponseId(data[0].id);
         setIsRunning(true);
+      } else {
+        setResponseId(null);
       }
     })
   };

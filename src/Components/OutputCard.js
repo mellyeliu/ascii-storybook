@@ -7,7 +7,6 @@ import SentenceToggler from './SentenceToggler';
 
 const OutputCard = ({ text, imageURLs, loading }) => {
   const [currentImage, setCurrentImage] = useState(0);
-  console.log(text);
 
   const placeHolderImages = [ '/butterfly.png', '/fairy.png', '/globe.png']
   const loadingText = ["Extracting key nouns from text...", "Feeding your words to DALL-E...", "Generating ASCII from images..."]
